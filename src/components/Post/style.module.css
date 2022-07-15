@@ -1,0 +1,7 @@
+.post {
+  background-color: var(--gray-800);
+  margin-bottom: 2rem;
+}
+.name {
+  font-weight: bold;
+}
