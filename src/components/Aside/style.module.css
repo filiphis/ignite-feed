@@ -65,3 +65,7 @@
   background-color: var(--green-500);
   color: var(--white);
 }
+
+.aside__button:focus{
+  box-shadow: 0 0 0 2px var(--white);
+}

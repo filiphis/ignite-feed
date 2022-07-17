@@ -1,7 +1,124 @@
 .post {
   background-color: var(--gray-800);
-  margin-bottom: 2rem;
+  padding: 2.5rem;
+  border-radius: 8px;
+}
+.post + .post {
+  margin-top: 2rem;
 }
 .name {
   font-weight: bold;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.userAvatar {
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 5px;
+  border: 4px solid var(--gray-800);
+  box-shadow: 0 0 0 2px var(--green-500);
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.userName {
+  font-size: 1rem;
+  color: var(--white);
+  font-weight: 700;
+}
+
+.userOccupation,
+.time {
+  font-size: 0.875rem;
+  color: var(--gray-400);
+}
+
+.content {
+  line-height: 1.6;
+}
+
+.content p  {
+  color: var(--gray-300);
+  margin-top: 1.5rem;
+}
+
+.content a {
+  color: var(--green-300);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.content a:hover {
+  color: var(--green-500);
+}
+
+.form {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--gray-600);
+}
+.form__title {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--gray-100);
+}
+
+.form__text {
+  width: 100%;
+  resize: none;
+  height: 6rem;
+  background-color: var(--gray-900);
+  color: var(--gray-300);
+  border: none;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  line-height: 1.4;
+}
+
+.form__buttonWrapper{}
+
+.form__button {
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--green-500);
+  color: var(--white);
+  font-weight: 700;
+  transition: background-color 0.15s ease;
+}
+
+.form__button:hover {
+  background-color: var(--green-300);
+}
+
+.form__buttonWrapper {
+  visibility: hidden;
+  max-height: 0;
+}
+
+.form:focus-within .form__buttonWrapper {
+  visibility: visible;
+  max-height:none;
+}
+
+.form__button:focus{
+  box-shadow: 0 0 0 2px var(--white);
 }
