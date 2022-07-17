@@ -57,4 +57,11 @@
   justify-content: center;
   gap: 0.625rem;
   width: 12.125rem;
+  background-color: transparent;
+  transition: background 0.2s, color 0.2s ;
+}
+
+.aside__button:hover {
+  background-color: var(--green-500);
+  color: var(--white);
 }
