@@ -1,5 +1,6 @@
 import styles from './style.module.css'
 import userAvatar from '../../assets/images/my-avatar.png'
+import { Comment } from '../Comment'
 
 export function Post(props) {
   return (
@@ -32,6 +33,11 @@ export function Post(props) {
           <button className={styles.form__button} type="submit">Publicar</button>
         </div>
       </form>
+
+      <div className={styles.commentsList}>
+        <Comment />
+        <Comment />
+      </div>
     </div>
   )
 }

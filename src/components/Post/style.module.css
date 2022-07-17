@@ -122,3 +122,7 @@
 .form__button:focus{
   box-shadow: 0 0 0 2px var(--white);
 }
+
+.commentsList {
+  margin-top: 2rem;
+}
