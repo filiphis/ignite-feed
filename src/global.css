@@ -36,7 +36,3 @@ body, input, button, textarea {
   font-size: 1rem;
   font-weight: 400;
 }
-
-button {
-  line-height: 0;
-}

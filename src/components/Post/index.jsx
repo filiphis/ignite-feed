@@ -1,13 +1,13 @@
 import styles from './style.module.css'
-import userAvatar from '../../assets/images/my-avatar.png'
 import { Comment } from '../Comment'
+import { Avatar } from '../Avatar/index'
 
 export function Post(props) {
   return (
     <div className={styles.post}>
       <header className={styles.header}>
         <div className={styles.user}>
-          <img className={styles.userAvatar} src={userAvatar} alt="" />
+        <Avatar src="https://avatars.githubusercontent.com/u/13370451?v=4" />
           <div className={styles.userInfo}>
             <span className={styles.userName}>Luiz Silveira</span>
             <span className={styles.userOccupation}>Dev Front-End</span>

@@ -1,7 +1,7 @@
 import styles from './style.module.css';
 import { PencilLine } from 'phosphor-react';
-import myAvatarImage from '../../assets/images/my-avatar.png';
 import asideBgImage from '../../assets/images/flowers-bg.png';
+import { Avatar } from '../Avatar';
 
 export function Aside() {
   return (
@@ -11,11 +11,7 @@ export function Aside() {
       </div>
 
       <div className={styles.aside__content}>
-        <img
-          className={styles.myAvatarImage}
-          src={myAvatarImage}
-          alt="Foto de perfil"
-        />
+        <Avatar src="https://avatars.githubusercontent.com/u/13370451?v=4" />
         <p className={styles.userName}>Luiz Silveira</p>
         <p className={styles.userOccupation}>Dev Front-end</p>
       </div>
