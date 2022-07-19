@@ -49,7 +49,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.625rem;
-  width: 12.125rem;
+  min-width: 12.125rem;
   background-color: transparent;
   transition: background 0.2s, color 0.2s ;
 }
@@ -61,4 +61,13 @@
 
 .aside__button:focus{
   box-shadow: 0 0 0 2px var(--white);
+}
+
+
+
+@media (max-width: 768px) {
+  .aside__buttonWrapper {
+    display: flex;
+    justify-content: center;
+  }
 }

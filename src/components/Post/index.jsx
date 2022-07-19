@@ -1,31 +1,52 @@
-import styles from './style.module.css'
-import { Comment } from '../Comment'
-import { Avatar } from '../Avatar/index'
+import { format, formatDistanceToNow } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
 
-export function Post(props) {
+import { Comment } from '../Comment';
+import { Avatar } from '../Avatar/index';
+import styles from './style.module.css';
+
+
+export function Post({ user, tags, publishedAt }) {
+
+  const publishedDateTimeFormatted = format(publishedAt, "d 'de' LLLL 'ás' HH:mm'h'", {
+    locale: ptBR,
+  });
+
+  const publishedDateTimeRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true,
+  })
+
+
+
+
   return (
     <div className={styles.post}>
       <header className={styles.header}>
         <div className={styles.user}>
-        <Avatar src="https://avatars.githubusercontent.com/u/13370451?v=4" />
+          <Avatar src={user.avatar} />
           <div className={styles.userInfo}>
-            <span className={styles.userName}>Luiz Silveira</span>
-            <span className={styles.userOccupation}>Dev Front-End</span>
+            <span className={styles.userName}>{user.name}</span>
+            <span className={styles.userOccupation}>{user.occupation}</span>
           </div>
         </div>
-        <time className={styles.time} title='17 de julho as 03:15h' dateTime='2022-07-17 03:15:00'>Públicado há 1h</time>
+        <time className={styles.time} title={publishedDateTimeFormatted} dateTime={publishedAt}>{publishedDateTimeRelativeToNow}</time>
       </header>
-      <div className={styles.content}>
-        <p>Fala galeraa 👋</p>
-        <p>Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀</p>
-        <p>👉 <a href="#">jane.design/doctorcare</a></p>
-        <p>
-          <a href="#">#novoprojeto</a> {' '}
-          <a href="#">#nlw</a>{' '}
-          <a href="#">#rocketseat</a>
 
-          </p>
+
+
+      <div className={styles.content}>
+
+        {user.comments.map(content => (
+          content.type === 'paragraph' ? <p>{content.text}</p> : <p><a href='#'>{content.text}</a></p>
+        ))}
+
+        <p>{tags ? tags.map(tag => <a href='#'> {tag} </a>) : ''}</p>
+
       </div>
+
+
+
       <form className={styles.form}>
         <legend className={styles.form__title}>Deixe seu feedback</legend>
         <textarea className={styles.form__text} placeholder='Escreva um comentário...' />

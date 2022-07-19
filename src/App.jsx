@@ -4,19 +4,55 @@ import { Post } from "./components/Post";
 import styles from './app.module.css'
 
 export function App() {
+
+  const posts = [
+    {
+      user: {
+        name: 'Luiz Silveira',
+        avatar: 'https://avatars.githubusercontent.com/u/13370451?v=4',
+        occupation: 'Dev Front-End',
+        comments: [
+          { type: 'paragraph', text: 'Fala galeraa 👋' },
+          { type: 'paragraph', text: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀' },
+          { type: 'link', text: 'jane.design/doctorcare' },
+        ],
+      },
+      publishedAt: new Date('2022-07-17 22:00:00'),
+      tags: ['#novoprojeto', '#nlw', '#rocketseat']
+    },
+
+    {
+      user: {
+        name: 'Gutavo',
+        avatar: 'https://avatars.githubusercontent.com/u/13370451?v=4',
+        occupation: 'Bebe mais lindo do mundo',
+        comments: [
+          { type: 'paragraph', text: 'Minha mamãe é muito lindona ❤️' },
+          { type: 'paragraph', text: 'Amo o papai 👬' },
+          { type: 'paragraph', text: 'Tenho as melhores vóvós 😍' },
+          { type: 'link', text: 'gutavo.silveira/omaislindo' },
+        ],
+      },
+      publishedAt: new Date('2022-07-15 11:00:00'),
+      tags: ['#bonitão do pai', '#lindão da mamae', '#chamego das vóvó']
+    },
+  ];
+
   return (
     <div>
       <Header />
       <div className={styles.wrapper}>
         <Aside />
-
         <div>
-          <Post userName="Gutavo" message="Bû" />
-          <Post userName="Pai" message="Quem é o bebe mais lindo do mundo ? É o Gustavo \o/" />
-          <Post userName="Irineu" message="Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellendus eveniet expedita repudiandae praesentium odio voluptates ipsam assumenda incidunt accusamus ducimus laudantium vitae natus harum, pariatur non quae voluptate distinctio!" />
+          {posts.map((post) => (
+            <Post
+              user={post.user}
+              tags={post.tags}
+              publishedAt={post.publishedAt}
+            />
+          ))}
         </div>
       </div>
-      
     </div>
   )
 }
