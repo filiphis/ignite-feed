@@ -2,7 +2,13 @@ import styles from './style.module.css';
 import { Trash, ThumbsUp } from 'phosphor-react';
 import { Avatar } from '../Avatar';
 
-export function Comment() {
+export function Comment({content, onDeleteComment}) {
+
+  function handleDeleteComment() {
+    event.preventDefault();
+    onDeleteComment(content);
+  }
+
   return (
     <div className={styles.comment}>
 
@@ -17,16 +23,24 @@ export function Comment() {
               <span className={styles.comment__userName}>Luiz Silveira</span>
               <time className={styles.time} title='17 de julho as 03:15h' dateTime='2022-07-17 03:15:00'>Comentou há 1h</time>
             </div>
-            <Trash size={24} className={styles.comment__trashIcon} />
+            <button 
+              onClick={ handleDeleteComment }
+              className={styles.comment__trash}
+            >
+              <Trash size={24} className={styles.comment__trashIcon} />
+            </button>
           </header>
 
-          <p className={styles.comment__message}>Muito bom Devon, parabéns!! 👏👏</p>
+          <p className={styles.comment__message}>{content}</p>
         </div>
         
 
 
         <footer className={styles.comment__footer}>
-          <button className={styles.comment__likeButton}>
+          <button 
+            onClick={handleDeleteComment}
+            className={styles.comment__likeButton}
+          >
             <ThumbsUp size={20} />
             Aplaudir
             <span>06</span>

@@ -4,9 +4,13 @@ import ptBR from 'date-fns/locale/pt-BR';
 import { Comment } from '../Comment';
 import { Avatar } from '../Avatar/index';
 import styles from './style.module.css';
+import { useState } from 'react';
 
 
 export function Post({ user, tags, publishedAt }) {
+
+  const [commentText, setCommentText] = useState('');
+  const [comments, setComments ] = useState([]);
 
   const publishedDateTimeFormatted = format(publishedAt, "d 'de' LLLL 'ás' HH:mm'h'", {
     locale: ptBR,
@@ -16,6 +20,23 @@ export function Post({ user, tags, publishedAt }) {
     locale: ptBR,
     addSuffix: true,
   })
+
+
+  function handleCommentText() {
+    setCommentText(event.target.value);
+  }
+
+  function handleCommentSubmit() {
+    event.preventDefault();
+    setComments([...comments, commentText]);
+    setCommentText('');
+  }
+
+  function deleteComment(comment) {
+    console.log(`Deletando comentario ${comment}`);
+  }
+
+
 
 
 
@@ -47,17 +68,32 @@ export function Post({ user, tags, publishedAt }) {
 
 
 
-      <form className={styles.form}>
+      <form 
+        onSubmit={handleCommentSubmit}
+        className={styles.form}
+      >
         <legend className={styles.form__title}>Deixe seu feedback</legend>
-        <textarea className={styles.form__text} placeholder='Escreva um comentário...' />
+        <textarea 
+          onChange={handleCommentText}
+          value={commentText}
+          className={styles.form__text} 
+          placeholder='Escreva um comentário...' 
+        />
         <div className={styles.form__buttonWrapper}>
           <button className={styles.form__button} type="submit">Publicar</button>
         </div>
       </form>
 
       <div className={styles.commentsList}>
-        <Comment />
-        <Comment />
+        {
+          comments.map(comment => (
+            <Comment 
+              content={comment}
+              onDeleteComment={deleteComment}
+            />
+          ))
+        }
+        
       </div>
     </div>
   )

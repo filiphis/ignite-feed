@@ -42,6 +42,17 @@
   color: var(--gray-400);
 }
 
+.comment__trash {
+  background-color: transparent;
+  border: none;
+  line-height: 0;
+  height: max-content;
+}
+
+.comment__trash:focus{
+  box-shadow: none;
+}
+
 .comment__trashIcon {
   background-color: transparent;
   color: var(--gray-400);
