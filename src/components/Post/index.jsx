@@ -32,11 +32,12 @@ export function Post({ user, tags, publishedAt }) {
     setCommentText('');
   }
 
-  function deleteComment(comment) {
-    console.log(`Deletando comentario ${comment}`);
+  function deleteComment(commentToDelete) {
+    const commentsWithoutDeletedComment = comments.filter(comment => comment !== commentToDelete);
+    setComments(commentsWithoutDeletedComment);
   }
 
-
+  let count = 0;
 
 
 
@@ -59,10 +60,10 @@ export function Post({ user, tags, publishedAt }) {
       <div className={styles.content}>
 
         {user.comments.map(content => (
-          content.type === 'paragraph' ? <p>{content.text}</p> : <p><a href='#'>{content.text}</a></p>
+          content.type === 'paragraph' ? <p key={count++}>{content.text}</p> : <p key={count++}><a href='#'>{content.text}</a></p>
         ))}
 
-        <p>{tags ? tags.map(tag => <a href='#'> {tag} </a>) : ''}</p>
+        <p>{tags ? tags.map(tag => <a key={count++} href='#'> {tag} </a>) : ''}</p>
 
       </div>
 
@@ -88,6 +89,7 @@ export function Post({ user, tags, publishedAt }) {
         {
           comments.map(comment => (
             <Comment 
+              key={comment}
               content={comment}
               onDeleteComment={deleteComment}
             />

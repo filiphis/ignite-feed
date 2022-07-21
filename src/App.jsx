@@ -7,6 +7,7 @@ export function App() {
 
   const posts = [
     {
+      id: 1,
       user: {
         name: 'Luiz Silveira',
         avatar: 'https://avatars.githubusercontent.com/u/13370451?v=4',
@@ -22,6 +23,7 @@ export function App() {
     },
 
     {
+      id: 2,
       user: {
         name: 'Gutavo',
         avatar: 'https://avatars.githubusercontent.com/u/13370451?v=4',
@@ -46,6 +48,7 @@ export function App() {
         <div>
           {posts.map((post) => (
             <Post
+            key={post.id}
               user={post.user}
               tags={post.tags}
               publishedAt={post.publishedAt}
