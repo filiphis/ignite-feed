@@ -22,7 +22,8 @@ export function Post({ user, tags, publishedAt }) {
   })
 
 
-  function handleCommentText() {
+  function handleCommentChange() {
+    event.target.setCustomValidity('');
     setCommentText(event.target.value);
   }
 
@@ -39,7 +40,13 @@ export function Post({ user, tags, publishedAt }) {
 
   let count = 0;
 
+  function handleCommentInvalid() {
+    if (event.target.validity.valueMissing === true) {
+      event.target.setCustomValidity('Digite um comentario!')
+    }
+  }
 
+  const commentIsInvalid = commentText.length === 0;
 
 
   return (
@@ -54,7 +61,6 @@ export function Post({ user, tags, publishedAt }) {
         </div>
         <time className={styles.time} title={publishedDateTimeFormatted} dateTime={publishedAt}>{publishedDateTimeRelativeToNow}</time>
       </header>
-
 
 
       <div className={styles.content}>
@@ -75,13 +81,20 @@ export function Post({ user, tags, publishedAt }) {
       >
         <legend className={styles.form__title}>Deixe seu feedback</legend>
         <textarea 
-          onChange={handleCommentText}
+          onChange={handleCommentChange}
+          onInvalid={handleCommentInvalid}
           value={commentText}
-          className={styles.form__text} 
-          placeholder='Escreva um comentário...' 
+          className={styles.form__text}
+          required
+          placeholder='Escreva um comentário...'
         />
         <div className={styles.form__buttonWrapper}>
-          <button className={styles.form__button} type="submit">Publicar</button>
+          <button 
+            disabled={commentIsInvalid}
+            className={styles.form__button} 
+            type="submit">
+            Publicar
+          </button>
         </div>
       </form>
 
