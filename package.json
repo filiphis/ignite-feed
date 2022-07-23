@@ -1,6 +1,6 @@
 {
   "name": "ignite-feed-ts",
-  "homepage": "ignite-feed/",
+  "homepage": "./ignite-feed/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
