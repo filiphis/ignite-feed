@@ -4,13 +4,33 @@ import ptBR from 'date-fns/locale/pt-BR';
 import { Comment } from '../Comment';
 import { Avatar } from '../Avatar/index';
 import styles from './style.module.css';
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react';
 
+interface iComment {
+  type: 'paragraph' | 'link';
+  text: string;
+}
 
-export function Post({ user, tags, publishedAt }) {
+interface User {
+  name: string;
+  avatar: string;
+  occupation: string;
+  contents: iComment[];
+}
+
+interface PostProps {
+  user: User;
+  tags: string[];
+  publishedAt: Date;
+}
+
+export function Post({ user, tags, publishedAt }: PostProps) {
+  
 
   const [commentText, setCommentText] = useState('');
-  const [comments, setComments ] = useState([]);
+  const [comments, setComments ] = useState<string[]>([]);
+
+  const publishedAtToString = publishedAt.toISOString()
 
   const publishedDateTimeFormatted = format(publishedAt, "d 'de' LLLL 'ás' HH:mm'h'", {
     locale: ptBR,
@@ -19,28 +39,28 @@ export function Post({ user, tags, publishedAt }) {
   const publishedDateTimeRelativeToNow = formatDistanceToNow(publishedAt, {
     locale: ptBR,
     addSuffix: true,
-  })
+  });
 
-
-  function handleCommentChange() {
-    event.target.setCustomValidity('');
-    setCommentText(event.target.value);
-  }
-
-  function handleCommentSubmit() {
+  function handleCommentSubmit(event: FormEvent) {
     event.preventDefault();
     setComments([...comments, commentText]);
     setCommentText('');
   }
 
-  function deleteComment(commentToDelete) {
+  function handleCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
+    event.target.setCustomValidity('');
+    setCommentText(event.target.value);
+  }
+
+
+  function deleteComment(commentToDelete: string) {
     const commentsWithoutDeletedComment = comments.filter(comment => comment !== commentToDelete);
     setComments(commentsWithoutDeletedComment);
   }
 
   let count = 0;
 
-  function handleCommentInvalid() {
+  function handleCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
     if (event.target.validity.valueMissing === true) {
       event.target.setCustomValidity('Digite um comentario!')
     }
@@ -59,13 +79,13 @@ export function Post({ user, tags, publishedAt }) {
             <span className={styles.userOccupation}>{user.occupation}</span>
           </div>
         </div>
-        <time className={styles.time} title={publishedDateTimeFormatted} dateTime={publishedAt}>{publishedDateTimeRelativeToNow}</time>
+        <time className={styles.time} title={publishedDateTimeFormatted} dateTime={publishedAtToString}>{publishedDateTimeRelativeToNow}</time>
       </header>
 
 
       <div className={styles.content}>
 
-        {user.comments.map(content => (
+        {user.contents.map(content => (
           content.type === 'paragraph' ? <p key={count++}>{content.text}</p> : <p key={count++}><a href='#'>{content.text}</a></p>
         ))}
 
@@ -105,6 +125,7 @@ export function Post({ user, tags, publishedAt }) {
               key={comment}
               content={comment}
               onDeleteComment={deleteComment}
+
             />
           ))
         }
