@@ -52,7 +52,7 @@ $ npm run dev
 ```
 
 <p>
-Pronto! Agora é só acessar a aplicação atraves do link: <a href="http://localhost:3001/" target="_blank">http://localhost:3001/</a>
+Pronto! Agora é só acessar a aplicação através do link: <a href="http://127.0.0.1:5173" target="_blank">http://127.0.0.1:5173</a>
 </p>
 
 ## Autor
