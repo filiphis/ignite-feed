@@ -16,7 +16,7 @@
 
 :white_check_mark: **Deletar** Os comentários criados.
 
-:x: Aplicação não possui back-end. Os após atualizar a página os dados são perdidos.
+:x: A Aplicação não possui back-end. Após atualizar a página os dados são perdidos.
 
 ## O que foi utilizado ?
 
