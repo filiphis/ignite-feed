@@ -45,7 +45,7 @@ export function App() {
       id: 2,
       user: {
         name: "Gutavo",
-        avatar: "/gustavinho.jpg",
+        avatar: "https://avatars.githubusercontent.com/u/13370451?v=4",
         occupation: "Bebe mais lindo do mundo",
         contents: [
           { type: "paragraph", text: "Minha mamãe é muito lindona ❤️" },
