@@ -1,5 +1,7 @@
 <h1 align="center" style="background-color: white;"><img src=".github/logo.png" alt="Ignite Feed"></h1>
 
+# Ignite Feed
+
 <!-- ![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/13370451/174902862-34808dd0-5086-4385-90e1-f825ecfb6621.gif) -->
 
 <p align="center">Projeto desenvolvido durante meus estudos de react no curso Ignite ReactJS da Rocketseat.</p>
